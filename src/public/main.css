@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+}
+
+@font-face {
+    font-family: "KarnakCondensed";
+    src: url("./fonts/karnakcondensed-normal-700.woff2");
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
+    font-family: "KarnakCondensed", sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.leaderboards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 4em;
+}
+
+.leaderboard-container {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
+    padding: 2em;
+    margin: 3em;
+    flex-basis: 25%;
+    text-align: center;
+}
+
+    .leaderboard-container h2 {
+        font-family: 'KarnakCondensed', sans-serif;
+        font-size: 2em;
+        margin: 0;
+    }
+
+.placements-container {
+    display: block;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+    .placements-container p {
+        margin: .3em;
+        display: inline;
+    }
+
+    .placements-container hr {
+        width: 100%;
+        color: rgba(0,0,0,0.5);
+    }
+
+    .placements-container .loading {
+        text-align: center;
+        display: block;
+        width: 100%;
+        padding: 1em;
+        margin: 0;
+    }
+
+.placement-container {
+    display: flex;
+}
+
+    .placement-container .time {
+        margin-left: auto;
+    }
+
+    .placement-container .placement {
+        font-family: 'KarnakCondensed', sans-serif;
+    }
+
+.chart-header {
+    text-align: center;
+    margin: 0 auto;
+}
+
+@media (max-width: 630px) {
+    .leaderboards-container {
+        padding: 1em;
+    }
+
+    .leaderboard-container {
+        flex-grow: 1;
+        margin: 1em;
+    }
+}

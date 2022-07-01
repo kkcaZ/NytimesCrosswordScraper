@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redev NYT Leaderboard</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+    <header>
+        <h2>NYT Mini Crossword Leaderboard</h2>
+    </header>
+    
+    <div class="leaderboards-container">
+        <div class="leaderboard-container">
+            <h2>Fastest Times</h2>
+            <div class="placements-container" id="top-times-leaderboard-placements">
+                <p class="loading">Loading data...</p>
+            </div>
+        </div>
+        <div class="leaderboard-container">
+            <h2>Today's Leaderboard</h2>
+            <p id="todays-date"></p>
+            <div class="placements-container" id="today-leaderboard-placements">
+                <p class="loading">Loading data...</p>
+            </div>
+        </div>
+        <div class="leaderboard-container">
+            <h2>Longest Times</h2>
+            <div class="placements-container" id="longest-times-leaderboard-placements">
+                <p class="loading">Loading data...</p>
+            </div>
+        </div>
+        <div class="leaderboard-container">
+            <h2>Average Times</h2>
+            <div class="placements-container" id="average-times-leaderboard">
+                <p class="loading">Loading data...</p>
+            </div>
+        </div>
+        <div class="leaderboard-container">
+            <h2>Games Played</h2>
+            <div class="placements-container" id="games-played-leaderboard">
+                <p class="loading">Loading data...</p>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="chart-header">Past Times:</h2>
+    <div id="chartDiv" style="width:50%; height:300px; margin:0 auto 3em auto;"></div>
+    
+</body>
+<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
+<script src="./main.js"></script>
+</html>

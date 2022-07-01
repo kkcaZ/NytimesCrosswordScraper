@@ -1,0 +1,15 @@
+services:
+  nyt-scraper:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports: 
+      - "27018:27017"
+    volumes:
+      - mongodb-data:/data/db
+volumes:
+  mongodb-data:
