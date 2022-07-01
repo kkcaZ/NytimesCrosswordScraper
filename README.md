@@ -19,7 +19,7 @@ To acquire the cookie, do the following:
 - Select Cookies
 - Copy the NYT-S cookie value
 
-Once you have acquired the cookie, paste it into the Dockerfile in the format shown below. (Line 17)
+Once you have acquired the cookie, paste it into the Dockerfile in the format shown below. [Line 17](https://github.com/kkcaZ/NytimesCrosswordScraper/blob/03c64810dcd6e16b9f27c6a4277a1c433bd1cf83/Dockerfile#L17)
 ```
 ENV COOKIE="NYT-S=[your_cookie]"
 ```
