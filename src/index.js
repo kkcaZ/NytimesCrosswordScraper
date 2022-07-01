@@ -116,7 +116,7 @@ async function getLeaderboard(cookie, res) {
                         playerData.push(item);
                     }
                 });
-
+                res.setHeader('content-type', 'application/json');
                 res.send(JSON.stringify(playerData));
             }
         })
