@@ -28,6 +28,8 @@ app.listen(port, () => {
 })
 
 async function getLeaderboard(cookie, res) {
+    console.log("Retrieving leaderboard data...");
+
     // Connection options for Nytimes Crossword Leaderboard
     const options = {
         hostname: "www.nytimes.com",
@@ -68,41 +70,48 @@ async function getLeaderboard(cookie, res) {
 
             // Get all players on leaderboard
             for (let i = 0; i < nameElements.length; i++) {
-                // Get player info
-                let playerName = nameElements[i].innerHTML.replace(`<span class="lbd-score__you">(you)</span>`, "").trimEnd();
-                let playerTime = scoreElements[i]?.innerHTML;
-                let timeInSeconds = getTimeInSeconds(playerTime);
-                let date = new Date();
-                let year = date.getFullYear();
-                let month = date.getMonth()+1;
-                let day = date.getDate();
-                let formattedDate = `${day}-${month}-${year}`;
+                try {
+                    // Get player info
+                    let playerName = nameElements[i]?.innerHTML.replace(`<span class="lbd-score__you">(you)</span>`, "").trimEnd();
+                    if (scoreElements[i] == null) continue;
+                    let playerTime = scoreElements[i]?.innerHTML;     
+                    if (!playerTime?.includes(":")) continue;
+                    let timeInSeconds = getTimeInSeconds(playerTime);
+                    let date = new Date();
+                    let year = date.getFullYear();
+                    let month = date.getMonth()+1;
+                    let day = date.getDate();
+                    let formattedDate = `${day}-${month}-${year}`;
 
-                let playerTimeObj = {
-                    timeInSeconds,
-                    date: formattedDate
-                }
+                    let playerTimeObj = {
+                        timeInSeconds,
+                        date: formattedDate
+                    }
 
-                record = await collection.findOne({name: playerName});
+                    record = await collection.findOne({name: playerName});
 
-                // Only insert if completed crossword
-                if (playerTime != null && playerTime != "--") {
-                    // Update record if already have record in db
-                    if (record) {
-                        if (!record.times.filter(e => e.date == formattedDate).length > 0) {
-                            let tempTimes = record.times;
-                            tempTimes.push(playerTimeObj);
-                            
-                            await collection.updateOne(
-                                { name: playerName },
-                                { $set: { scores: tempTimes } }
-                            );
+                    // Only insert if completed crossword
+                    if (playerTime != null && playerTime != "--") {
+                        // Update record if already have record in db
+                        if (record) {
+                            if (!record.times.filter(e => e.date == formattedDate).length > 0) {
+                                let tempTimes = record.times;
+                                tempTimes.push(playerTimeObj);
+                                
+                                await collection.updateOne(
+                                    { name: playerName },
+                                    { $set: { scores: tempTimes } }
+                                );
+                            }
+                        }
+                        // Insert new record
+                        else {
+                            collection.insertOne({name: playerName, times: [playerTimeObj]});
                         }
                     }
-                    // Insert new record
-                    else {
-                        collection.insertOne({name: playerName, times: [playerTimeObj]});
-                    }
+                }
+                catch (err) {
+                    console.error(`Error occured when reading leaderboard data... \nERROR: ${err}`);
                 }
             }
 
