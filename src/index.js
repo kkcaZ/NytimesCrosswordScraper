@@ -28,7 +28,7 @@ app.listen(port, () => {
 })
 
 async function getLeaderboard(cookie, res) {
-    console.log("Retrieving leaderboard data...");
+    console.log(`[${new Date()}] Retrieving leaderboard data...`);
 
     // Connection options for Nytimes Crossword Leaderboard
     const options = {
