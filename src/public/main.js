@@ -77,7 +77,7 @@ function updateTopTimesLeaderboard() {
             let timeInSeconds = s.timeInSeconds;
             let formattedTime = getFormattedTime(timeInSeconds);
 
-            times.push({ name: player.name, formattedTime, timeInSeconds });
+            times.push({ name: player.name, formattedTime, timeInSeconds, date: s.date });
         }
     }
 
@@ -89,6 +89,7 @@ function updateTopTimesLeaderboard() {
         let scoreHtml = `<div class="placement-container">
                             <p class="placement">${placement}</p>
                             <p>${time.name}</p>
+                            <p class="date">${time.date}</p>
                             <p class="time">${time.formattedTime}</span>
                         </div>
                         <hr/>`;
@@ -109,7 +110,7 @@ function updateLongestTimesLeaderboard() {
             let timeInSeconds = s.timeInSeconds;
             let formattedTime = getFormattedTime(timeInSeconds);
 
-            times.push({ name: player.name, formattedTime, timeInSeconds });
+            times.push({ name: player.name, formattedTime, timeInSeconds, date: s.date });
         }
     }
 
@@ -121,6 +122,7 @@ function updateLongestTimesLeaderboard() {
         let scoreHtml = `<div class="placement-container">
                             <p class="placement">${placement}</p>
                             <p>${time.name}</p>
+                            <p class="date">${time.date}</p>
                             <p class="time">${time.formattedTime}</span>
                         </div>
                         <hr/>`;

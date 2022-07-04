@@ -86,6 +86,10 @@ header {
         margin-left: auto;
     }
 
+    .placement-container .date {
+        color: grey; 
+    }
+
     .placement-container .placement {
         font-family: 'KarnakCondensed', sans-serif;
     }
