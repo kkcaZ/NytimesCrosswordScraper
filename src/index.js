@@ -54,7 +54,7 @@ async function getLeaderboard(cookie, res) {
         response.on("end", async () => {
             const dom = new JSDOM(data);
             let nameElements = dom.window.document.querySelectorAll(".lbd-score__name");
-            let scoreElements = dom.window.document.querySelectorAll(".lbd-score__time");
+            let timeElements = dom.window.document.querySelectorAll(".lbd-score__time");
             let html = "";
 
             try {
@@ -73,8 +73,8 @@ async function getLeaderboard(cookie, res) {
                 try {
                     // Get player info
                     let playerName = nameElements[i]?.innerHTML.replace(`<span class="lbd-score__you">(you)</span>`, "").trimEnd();
-                    if (scoreElements[i] == null) continue;
-                    let playerTime = scoreElements[i]?.innerHTML;     
+                    if (timeElements[i] == null) continue;
+                    let playerTime = timeElements[i]?.innerHTML;
                     if (!playerTime?.includes(":")) continue;
                     let timeInSeconds = getTimeInSeconds(playerTime);
                     let date = new Date();
@@ -100,7 +100,7 @@ async function getLeaderboard(cookie, res) {
                                 
                                 await collection.updateOne(
                                     { name: playerName },
-                                    { $set: { scores: tempTimes } }
+                                    { $set: { times: tempTimes } }
                                 );
                             }
                         }
